@@ -17,7 +17,7 @@
 
 - (void)awakeFromNib
 {
-    self.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
+    self.menuPreferredStatusBarStyle = UIStatusBarStyleDefault;
     self.contentViewShadowColor = [UIColor blackColor];
     self.contentViewShadowOffset = CGSizeMake(0, 0);
     self.contentViewShadowOpacity = 0.6;
@@ -25,7 +25,7 @@
     self.contentViewShadowEnabled = YES;
     
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
-    self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMenuViewController"];
+    self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingNavController"];
     self.rightMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuViewController"];
     self.backgroundImage = [UIImage imageNamed:@"Stars"];
     self.delegate = self;

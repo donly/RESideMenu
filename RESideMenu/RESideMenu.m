@@ -208,7 +208,12 @@
     
     if (self.leftMenuViewController) {
         [self addChildViewController:self.leftMenuViewController];
-        self.leftMenuViewController.view.frame = self.view.bounds;
+        CGFloat width = (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetWidth(self.view.frame) / 2.f : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame) / 2.f);
+        if (self.scaleContentView) {
+            width = CGRectGetWidth(self.view.frame);
+        }
+        
+        self.leftMenuViewController.view.frame = CGRectMake(0, 0, width, CGRectGetHeight(self.view.bounds));
         self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.menuViewContainer addSubview:self.leftMenuViewController.view];
         [self.leftMenuViewController didMoveToParentViewController:self];
@@ -746,7 +751,11 @@
     _leftMenuViewController = leftMenuViewController;
    
     [self addChildViewController:self.leftMenuViewController];
-    self.leftMenuViewController.view.frame = self.view.bounds;
+    
+    CGFloat width = (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) ? self.contentViewInLandscapeOffsetCenterX + CGRectGetWidth(self.view.frame) : self.contentViewInPortraitOffsetCenterX + CGRectGetWidth(self.view.frame)) / 2.f;
+    
+    self.leftMenuViewController.view.frame = CGRectMake(0, 0, width, CGRectGetHeight(self.view.bounds));
+    
     self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.menuViewContainer addSubview:self.leftMenuViewController.view];
     [self.leftMenuViewController didMoveToParentViewController:self];
